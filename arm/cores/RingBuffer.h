@@ -16,7 +16,6 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-
 #ifndef _RING_BUFFER_
 #define _RING_BUFFER_
 
@@ -31,12 +30,14 @@
 class RingBuffer
 {
 public:
-    volatile uint8_t _aucBuffer[SERIAL_BUFFER_SIZE] ;
+    volatile uint8_t *_aucBuffer;
+    // volatile uint8_t _aucBuffer[SERIAL_BUFFER_SIZE] ;
     volatile int _iHead ;
     volatile int _iTail ;
+    volatile int _bufferSize ;
 
 public:
-    RingBuffer( void ) ;
+    RingBuffer( int bufferSize =  SERIAL_BUFFER_SIZE) ;
     void store_char( uint8_t c ) ;
 } ;
 
